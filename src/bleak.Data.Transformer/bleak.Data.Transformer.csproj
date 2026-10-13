@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <PackageId>bleak.Data.Transformer</PackageId>
+    <Authors>Jamal Khan</Authors>
+    <Company>bleak LLC</Company>
+    <Copyright>bleak LLC</Copyright>
+    <Description>Config-driven, streaming ETL engine: describe sources, joins, typed fields and transform pipelines in JSON and get JSONL out.</Description>
+    <PackageTags>etl;csv;jsonl;transform;streaming</PackageTags>
+    <PackageLicenseExpression>Unlicense</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/jamalkhan/bleak.Data.Transformer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jamalkhan/bleak.Data.Transformer.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="bleak.Data.InfiniteDataLoader" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

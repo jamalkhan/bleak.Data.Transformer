@@ -1,0 +1,84 @@
+## .NET .gitignore
+
+
+
+# --- Secrets / local data ---
+.env
+.env.*
+*.pfx
+*.snk
+*.key
+*.pem
+secrets.json
+LocalData/
+*.nupkg
+*.snupkg
+
+# --- .NET build output ---------------------------------------------------------------------------
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Ll]og/
+[Ll]ogs/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+artifacts/
+publish/
+*.dll
+*.exe
+*.pdb
+*.nupkg
+*.snupkg
+.nuget/
+project.lock.json
+project.fragment.lock.json
+[Pp]ackages/
+*.pubxml
+*.pubxml.user
+*.publishsettings
+*.cache
+**/Properties/launchSettings.json
+
+# --- Tests / coverage ------------------------------------------------------------------------------
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+*.cobertura.xml
+.coverage
+BenchmarkDotNet.Artifacts/
+
+# --- IDE / tooling ------------------------------------------------------------------------------------
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+_ReSharper*/
+*.rsuser
+.fake/
+.ionide/
+
+# --- OS --------------------------------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Claude Code / local agent state ------------------------------------------------------------------
+.claude/
+CLAUDE.md

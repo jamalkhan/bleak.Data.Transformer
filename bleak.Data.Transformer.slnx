@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/bleak.Data.Transformer/bleak.Data.Transformer.csproj" />
+  <Project Path="tests/bleak.Data.Transformer.Tests/bleak.Data.Transformer.Tests.csproj" />
+</Solution>
