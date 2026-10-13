@@ -2,7 +2,8 @@ name: Publish to NuGet
 
 # Publishes when a version tag is pushed, e.g.:  git tag v1.0.0 && git push origin v1.0.0
 # The package version is taken from the tag (v1.2.3 -> 1.2.3; v1.2.3-beta.1 -> prerelease).
-# Requires the repository secret NUGET_API_KEY (a nuget.org API key allowed to push bleak.Data.Transformer).
+# Uses NuGet Trusted Publishing (OIDC): needs a trusted publishing policy on nuget.org for this repo/workflow
+# and the repository secret NUGET_USER (your nuget.org username, not your email). No API key is stored.
 
 on:
   push:
@@ -11,20 +12,28 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # lets the job request a GitHub OIDC token
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 10.0.x
       - name: Version from tag
-        run: echo "VERSION=${GITHUB_REF_bleak.Data.Transformer#v}" >> "$GITHUB_ENV"
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
       - run: dotnet restore
       - run: dotnet build --no-restore -c Release -p:Version=$VERSION
       - run: dotnet test --no-build -c Release
       - name: Pack
         run: dotnet pack src/bleak.Data.Transformer/bleak.Data.Transformer.csproj --no-build -c Release -p:Version=$VERSION -o artifacts
+      - name: NuGet login (OIDC -> short-lived API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
       - name: Push to nuget.org
-        run: dotnet nuget push "artifacts/*.nupkg" --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push "artifacts/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
       - uses: actions/upload-artifact@v4
         with:
           name: packages

@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
 
     <PackageId>bleak.Data.Transformer</PackageId>
+    <Version>1.0.0</Version>
     <Authors>Jamal Khan</Authors>
     <Company>bleak LLC</Company>
     <Copyright>bleak LLC</Copyright>
@@ -16,6 +17,12 @@
     <PackageProjectUrl>https://github.com/jamalkhan/bleak.Data.Transformer</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jamalkhan/bleak.Data.Transformer.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <ItemGroup>
